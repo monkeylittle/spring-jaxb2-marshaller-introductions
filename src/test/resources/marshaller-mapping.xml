@@ -1,0 +1,25 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+
+<jaxb-intros xmlns="http://www.jboss.org/xsd/jaxb/intros">
+    <Class name="net.thoughtforge.model.Person">
+        <XmlType/>
+        <XmlRootElement name="Person" namespace="http://thoughtforge.net/model"/>
+        <XmlAccessorType value="FIELD"/>
+
+        <Field name="dateOfBirth">
+            <XmlElement name="dateOfBirth" namespace="http://thoughtforge.net/model"/>
+        </Field>
+        <Field name="firstName">
+            <XmlElement name="firstName" namespace="http://thoughtforge.net/model"/>
+        </Field>
+        <Field name="height">
+            <XmlElement name="height" namespace="http://thoughtforge.net/model"/>
+        </Field>
+        <Field name="lastName">
+            <XmlElement name="lastName" namespace="http://thoughtforge.net/model"/>
+        </Field>
+        <Field name="weight">
+            <XmlElement name="weight" namespace="http://thoughtforge.net/model"/>
+        </Field>
+    </Class>
+</jaxb-intros>

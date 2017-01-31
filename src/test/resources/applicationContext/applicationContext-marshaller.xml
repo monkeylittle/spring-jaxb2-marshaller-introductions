@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-2.0.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<context:component-scan base-package="net.thoughtforge.marshaller"/>
+	
+	<bean id="jaxb2Marshaller" class="org.springframework.oxm.jaxb.Jaxb2Marshaller">
+		<property name="classesToBeBound">
+			<list>
+				<value>net.thoughtforge.model.Person</value>
+			</list>
+		</property>
+		<property name="jaxbContextProperties">
+            <map>
+                <entry>
+                    <key>
+                        <util:constant static-field="com.sun.xml.bind.api.JAXBRIContext.ANNOTATION_READER"/>
+                    </key>
+                  
+                    <bean class="org.jboss.jaxb.intros.IntroductionsAnnotationReader">
+                        <constructor-arg ref="jaxbIntroductions"/>
+                    </bean>
+                </entry>
+            </map>
+		</property>
+		<property name="schema" value="classpath:schema/person.xsd"/>
+	</bean>
+
+    <bean id="jaxbIntroductions" class="org.jboss.jaxb.intros.IntroductionsConfigParser"
+            factory-method="parseConfig">
+        <constructor-arg><value>classpath:marshaller-mapping.xml</value></constructor-arg>
+    </bean>
+</beans>
